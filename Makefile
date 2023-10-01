@@ -31,8 +31,8 @@ cover:
 specs:
 	@curl --silent https://packages.ecosyste.ms/docs/api/v1/openapi.yaml -o specs/packages.yaml
 	@curl --silent https://repos.ecosyste.ms/docs/api/v1/openapi.yaml -o specs/repos.yaml
-	@curl --silent https://api.khulnasoft.io/rest/openapi/2023-04-28~experimental -o specs/khulnasoft-experimental.json
-	@curl --silent https://api.khulnasoft.io/rest/openapi/2023-04-28 -o specs/khulnasoft.json
+	@curl --silent https://api.khulnasoft.com/rest/openapi/2023-04-28~experimental -o specs/khulnasoft-experimental.json
+	@curl --silent https://api.khulnasoft.com/rest/openapi/2023-04-28 -o specs/khulnasoft.json
 
 clients: specs
 	@oapi-codegen -generate types,client -package packages specs/packages.yaml > ecosystems/packages/packages.go

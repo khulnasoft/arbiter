@@ -85,7 +85,7 @@ func TestEnrichSBOM_SPDXWithVulnerabilities(t *testing.T) {
 	vulnRef := bom.Packages[0].PackageExternalReferences[1]
 	assert.Equal(t, "SECURITY", vulnRef.Category)
 	assert.Equal(t, "advisory", vulnRef.RefType)
-	assert.Equal(t, "https://security.khulnasoft.io/vuln/KHULNASOFT-PYTHON-NUMPY-73513", vulnRef.Locator)
+	assert.Equal(t, "https://security.khulnasoft.com/vuln/KHULNASOFT-PYTHON-NUMPY-73513", vulnRef.Locator)
 	assert.Equal(t, "Arbitrary Code Execution", vulnRef.ExternalRefComment)
 }
 

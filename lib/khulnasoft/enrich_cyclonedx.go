@@ -132,7 +132,7 @@ func enrichCycloneDX(bom *cdx.BOM) *cdx.BOM {
 					for _, sev := range *issue.Attributes.Severities {
 						source := cdx.Source{
 							Name: "Khulnasoft",
-							URL:  "https://security.khulnasoft.io",
+							URL:  "https://security.khulnasoft.com",
 						}
 						if sev.Score != nil {
 							score := float64(*sev.Score)

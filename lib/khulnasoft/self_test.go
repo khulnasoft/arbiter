@@ -33,7 +33,7 @@ func TestGetKhulnasoftOrg(t *testing.T) {
 
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
-	httpmock.RegisterResponder("GET", "https://api.khulnasoft.io/rest/self",
+	httpmock.RegisterResponder("GET", "https://api.khulnasoft.com/rest/self",
 		httpmock.NewJsonResponderOrPanic(200, httpmock.File("testdata/self.json")),
 	)
 

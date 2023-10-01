@@ -153,7 +153,7 @@ Khulnasoft will add a new [vulnerability](https://cyclonedx.org/docs/1.4/json/#v
       {
         "source": {
           "name": "Khulnasoft",
-          "url": "https://security.khulnasoft.io"
+          "url": "https://security.khulnasoft.com"
         },
         "score": 7.5,
         "severity": "high",
@@ -191,13 +191,13 @@ For SPDX, vulnerability informatio is added as additional `externalRefs`:
 {
   "referenceCategory": "SECURITY",
   "referenceType": "advisory",
-  "referenceLocator": "https://security.khulnasoft.io/vuln/KHULNASOFT-JS-MINIMATCH-3050818",
+  "referenceLocator": "https://security.khulnasoft.com/vuln/KHULNASOFT-JS-MINIMATCH-3050818",
   "comment": "Regular Expression Denial of Service (ReDoS)"
 },
 {
   "referenceCategory": "SECURITY",
   "referenceType": "advisory",
-  "referenceLocator": "https://security.khulnasoft.io/vuln/KHULNASOFT-JS-MINIMATCH-1019388",
+  "referenceLocator": "https://security.khulnasoft.com/vuln/KHULNASOFT-JS-MINIMATCH-1019388",
   "comment": "Regular Expression Denial of Service (ReDoS)"
 }
 ```
@@ -273,7 +273,7 @@ The ecosyste.ms enrichment adds license information, which Bomber then surfaces:
 ```
 ■ Ecosystems detected: gem
 ■ Scanning 18 packages for vulnerabilities...
-■ Vulnerability Provider: Khulnasoft (https://security.khulnasoft.io)
+■ Vulnerability Provider: Khulnasoft (https://security.khulnasoft.com)
 
 ■ Files Scanned
         - (sha256:701770b2317ea8cbd03aa398ecb6a0381c85beaf24d46c45665b53331816e360)

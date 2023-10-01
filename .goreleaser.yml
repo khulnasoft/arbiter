@@ -74,7 +74,7 @@ nfpms:
       - deb
       - rpm
     homepage: https://github.com/khulnasoft/arbiter
-    maintainer: garethr <gareth.rushgrove@khulnasoft.io>
+    maintainer: garethr <gareth.rushgrove@khulnasoft.com>
 
 source:
   rlcp: true

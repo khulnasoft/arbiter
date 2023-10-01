@@ -28,7 +28,7 @@ import (
 	"github.com/khulnasoft/arbiter/khulnasoft/issues"
 )
 
-const khulnasoftServer = "https://api.khulnasoft.io/rest"
+const khulnasoftServer = "https://api.khulnasoft.com/rest"
 const version = "2023-04-28"
 
 func GetPackageVulnerabilities(purl packageurl.PackageURL) (*issues.FetchIssuesPerPurlResponse, error) {

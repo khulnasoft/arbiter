@@ -31,7 +31,7 @@ import (
 )
 
 const (
-	khulnasoftVulnerabilityDB_URI = "https://security.khulnasoft.io"
+	khulnasoftVulnerabilityDB_URI = "https://security.khulnasoft.com"
 )
 
 func enrichSPDX(bom *spdx.Document) *spdx.Document {
