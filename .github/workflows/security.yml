@@ -1,0 +1,46 @@
+name: Security
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  "0 0 * * 0"
+
+  workflow_call:
+    secrets:
+      GITLEAKS_LICENSE:
+        required: true
+      KHULNASOFT_TOKEN:
+        required: true
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.20.3
+
+    - uses: khulnasoft/actions/setup@master
+
+    - name: Khulnasoft Open Source 
+      run: khulnasoft test
+      env:
+        KHULNASOFT_TOKEN: ${{ secrets.KHULNASOFT_TOKEN }}
+
+    - name: Khulnasoft Code
+      run: khulnasoft code test
+      env:
+        KHULNASOFT_TOKEN: ${{ secrets.KHULNASOFT_TOKEN }}
+
+    - name: Gitleaks    
+      uses: gitleaks/gitleaks-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+

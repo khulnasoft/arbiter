@@ -1,0 +1,4 @@
+[whitelist]
+files = [
+    "specs/khulnasoft-experimental.jsonl",
+]

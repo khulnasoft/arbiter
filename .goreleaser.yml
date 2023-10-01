@@ -1,0 +1,94 @@
+before:
+  hooks:
+  - go mod download
+  - go install github.com/google/go-licenses@latest
+  - go-licenses save . --save_path=./acknowledgements --force
+  - tar -cvf ./acknowledgements.tar.gz -C ./acknowledgements .
+  - rm -rf ./acknowledgements
+
+builds:
+- main: ./main.go
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - windows
+  - linux
+  - darwin
+  goarch:
+  - amd64
+  - arm64
+  - ppc64le
+  ldflags:
+  - "-s"
+  - "-w"
+ # - "-X github.com/khulnasoft/arbiter/internal/commands.version={{.Version}}"
+
+archives:
+- format: tar.gz
+  rlcp: true
+  name_template: >-
+    {{ .ProjectName }}_
+    {{- title .Os }}_
+    {{- if eq .Arch "amd64" }}x86_64
+    {{- else if eq .Arch "386" }}i386
+    {{- else }}{{ .Arch }}{{ end }}
+  format_overrides:
+    - goos: windows
+      format: zip
+  files:
+    #    - LICENSE
+    - README.md
+
+checksum:
+  name_template: 'checksums.txt'
+
+release:
+  extra_files:
+    - glob: ./acknowledgements.tar.gz
+
+changelog:
+  use: github
+  groups:
+  - title: New Features
+    regexp: '^feat(ure)?:'
+    order: 0
+  - title: Bug Fixes
+    regexp: '^(bug|fix):'
+    order: 1
+  - title: Other Changes
+    order: 999
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+    - '^misc:'
+    - '^typo:'
+    - '(?i) typo( |\.|\r?\n)'
+
+# Publishes the deb and rpm files to the GitHub releases page.
+nfpms:
+  - bindir: /usr/bin
+    description: "Enrich SBOMs with Parlay"
+    formats:
+      - deb
+      - rpm
+    homepage: https://github.com/khulnasoft/arbiter
+    maintainer: garethr <gareth.rushgrove@khulnasoft.io>
+
+source:
+  rlcp: true
+  enabled: true
+
+sboms:
+  - id: cyclonedx
+    artifacts: source
+    args: ["$artifact", "--file", "$document", "--output", "cyclonedx-json"]
+    documents:
+      - "{{ .Binary }}_{{ .Version }}.cyclonedx.sbom"
+  - id: spdx
+    artifacts: source
+    args: ["$artifact", "--file", "$document", "--output", "spdx-json"]
+    documents:
+      - "{{ .Binary }}-{{ .Version }}.spdx.sbom"
+
